@@ -21,7 +21,7 @@
             ></el-input>
           </el-form-item>
           <el-form-item class="submit">
-            <el-button type="primary" class="submitBtn" @click="submitForm('myForm')"
+            <el-button type="primary" class="submitBtn" @click="submitForm()"
               >登录</el-button
             >
           </el-form-item>
@@ -32,19 +32,54 @@
 </template>
 
 <script>
+import jwtDecode from "jwt-decode";
+import { serverIndex } from "../../server/serverIndex";
+import { login } from "../../server/login";
 export default {
   data() {
     return {
       formLabelAlign: {
         username: "root",
-        password: "123456",
+        password: "19980601mg",
       },
     };
   },
   methods: {
-    submitForm() {
-     console.log(this.formLabelAlign)
+    async submitForm() {
+      if (this.formLabelAlign.username.trim() == "") {
+        this.$message.error("亲，用户名不能为空");
+        return;
+      }
+      if (this.formLabelAlign.password.trim() == "") {
+        this.$message.error("亲，密码不能为空");
+        return;
+      } else {
+        const res = await login(
+          this.formLabelAlign.username,
+          this.formLabelAlign.password
+        );
+        if (res.code == 200) {
+          this.$message({
+            message: "恭喜你，登录成功",
+            type: "success",
+          });
+          let token = res.token;
+          let user = jwtDecode(token);
+          console.log(user);
+          sessionStorage.setItem("token", token);
+          this.$router.replace({name:'homeIndex'})
+        }
+        if(res.code==400){
+          this.$message({
+            message:res.msg,
+            type: "error",
+          });
+        }
+      }
     },
+  },
+  created() {
+    console.log(serverIndex);
   },
 };
 </script>
