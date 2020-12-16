@@ -24,7 +24,12 @@
         </template>
         <el-menu-item-group>
           <el-menu-item index="/indexManagement/swiperManagement"
-            >轮播图</el-menu-item
+            ><i class="iconfont icon-lunbotu"></i>
+            <span slot="title">轮播图列表</span></el-menu-item
+          >
+          <el-menu-item index="/indexManagement/uploadSwiper"
+            ><i class="iconfont icon-tianjialunbotu"></i>
+            <span slot="title">上传轮播图</span></el-menu-item
           >
         </el-menu-item-group>
       </el-submenu>

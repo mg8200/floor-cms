@@ -27,6 +27,11 @@ const routes = [{
         name: "swiperManagement",
         component: () => import("../components/indexManagement/swiperManagement.vue")
       },
+      {
+        path: '/indexManagement/uploadSwiper',
+        name: "uploadSwiper",
+        component: () => import("../components/indexManagement/uploadSwiper.vue")
+      },
     ]
   }
 ]
