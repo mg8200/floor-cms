@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import NProgress from 'nprogress'
 
 Vue.use(VueRouter)
 
@@ -9,7 +10,7 @@ const routes = [{
     component: () => import("../components/user/login.vue"),
   },
   {
-    path: '/home',
+    path: '/',
     name: 'home',
     component: () => import("../components/home/home.vue"),
     children: [{
@@ -32,6 +33,41 @@ const routes = [{
         name: "uploadSwiper",
         component: () => import("../components/indexManagement/uploadSwiper.vue")
       },
+      {
+        path: '/information/informationList',
+        name: "informationList",
+        component: () => import("../components/information/informationList.vue")
+      },
+      {
+        path: '/information/addInformation',
+        name: "addInformation",
+        component: () => import("../components/information/addInformation.vue")
+      },
+      {
+        path: '/information/modifyContent/:id',
+        name: "modifyContent",
+        component: () => import("../components/information/modifyContent.vue")
+      },
+      {
+        path: '/goodsManagement/goodsManagement',
+        name: "goodsManagement",
+        component: () => import("../components/goodsManagement/goodsManagement.vue")
+      },
+      {
+        path: '/goodsManagement/modifyGoods/:id',
+        name: "modifyGoods",
+        component: () => import("../components/goodsManagement/modifyGoods.vue")
+      },
+      {
+        path: '/goodsManagement/commentsManagement/:id',
+        name: "commentsManagement",
+        component: () => import("../components/goodsManagement/commentsManagement.vue")
+      },
+      {
+        path: '/goodsManagement/addGoods',
+        name: "addGoods",
+        component: () => import("../components/goodsManagement/addGoods.vue")
+      },
     ]
   }
 ]
@@ -43,6 +79,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   let token = sessionStorage.getItem("token");
+  NProgress.start();
   if (to.name == 'login') {
     sessionStorage.removeItem('token');
     next()
@@ -55,6 +92,11 @@ router.beforeEach((to, from, next) => {
       })
     }
   }
+})
+
+router.afterEach(() => {  
+  // 在即将进入新的页面组件前，关闭掉进度条
+  NProgress.done()
 })
 
 export default router

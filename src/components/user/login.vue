@@ -66,12 +66,13 @@ export default {
           let token = res.token;
           let user = jwtDecode(token);
           console.log(user);
+          // this.$store.commit("chnageUser",user)
           sessionStorage.setItem("token", token);
-          this.$router.replace({name:'homeIndex'})
+          this.$router.replace({ name: "homeIndex" });
         }
-        if(res.code==400){
+        if (res.code == 400) {
           this.$message({
-            message:res.msg,
+            message: res.msg,
             type: "error",
           });
         }
@@ -116,6 +117,10 @@ export default {
         width: 100%;
       }
     }
+  }
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

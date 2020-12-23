@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import jwtDecode from "jwt-decode";
 import vueNavBar from "./navBar";
 import { auditOrderCount } from "../../server/order";
 export default {

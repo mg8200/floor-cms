@@ -39,8 +39,14 @@
           <span slot="title">资讯设置</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="login">资讯管理</el-menu-item>
-          <el-menu-item index="1-2">新建资讯</el-menu-item>
+          <el-menu-item index="/information/informationList">
+            <i class="iconfont icon-zxgl"></i>
+            <span slot="title">资讯管理</span>
+          </el-menu-item>
+          <el-menu-item index="/information/addInformation">
+            <i class="iconfont icon-xiewenzhang"></i>
+            <span slot="title">新建资讯</span>
+          </el-menu-item>
         </el-menu-item-group>
       </el-submenu>
       <el-submenu index="5">
@@ -49,9 +55,14 @@
           <span slot="title">商品管理</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="login">商品管理</el-menu-item>
-          <el-menu-item index="4-2">评论管理</el-menu-item>
-          <el-menu-item index="4-3">新建商品</el-menu-item>
+          <el-menu-item index="/goodsManagement/goodsManagement">
+            <i class="iconfont icon-shangpinguanli"></i>
+            <span slot="title">商品管理</span>
+          </el-menu-item>
+          <el-menu-item index="/goodsManagement/addGoods">
+            <i class="iconfont icon-tianjiashangpingouwulan"></i>
+            <span slot="title">新建商品</span>
+          </el-menu-item>
         </el-menu-item-group>
       </el-submenu>
       <el-submenu index="6">
