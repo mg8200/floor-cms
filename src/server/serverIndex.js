@@ -1,1 +1,1 @@
-export const serverIndex="http://127.0.0.1:3000"
+export const serverIndex="http://www.minggang.top:8000"

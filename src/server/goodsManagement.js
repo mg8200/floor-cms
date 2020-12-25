@@ -153,3 +153,15 @@ export async function deleteGoods(id) {
     })
     return res
 }
+
+
+
+// 增加类型
+export async function addGoodTitleName(goodTitleName) {
+    const {
+        data: res
+    } = await axios.post(`/goods/addGoodTitleName`, {
+        goodTitleName
+    })
+    return res
+}

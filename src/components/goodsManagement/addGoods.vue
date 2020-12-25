@@ -13,6 +13,14 @@
           <span>发布商品</span>
         </div>
         <div>
+          <el-input
+            v-model="goodTitleName"
+            placeholder="请输入要添加类别的名称"
+            style="width: 250px"
+          ></el-input>
+          <el-button @click="addGoodTitleName">添加</el-button>
+        </div>
+        <div>
           <el-form
             label-position="top"
             label-width="80px"
@@ -251,11 +259,13 @@ import {
   getGoodsTitle,
   getGoodsSuitableScene,
   releaseGoods,
+  addGoodTitleName
 } from "../../server/goodsManagement";
 import { serverIndex } from "../../server/serverIndex";
 export default {
   data() {
     return {
+      goodTitleName: "",
       goodData: {
         attached: "下单填写留言，免费赠送贺卡",
         distribution: "全国送货上门，市区免运费",
@@ -381,7 +391,7 @@ export default {
     },
     async submit() {
       let obj = this.goodData;
-      console.log(obj)
+      console.log(obj);
       if (obj.name.trim() == "") {
         this.$message({
           showClose: true,
@@ -510,6 +520,27 @@ export default {
           type: "success",
         });
         this.$router.replace({ name: "goodsManagement" });
+      }
+      if (res.code == 400) {
+        this.$message({
+          message: res.msg,
+          type: "error",
+        });
+      }
+    },
+    async addGoodTitleName() {
+      if (this.goodTitleName.trim() == "") {
+        this.$message({
+          message: "类型名称不能为空",
+          type: "error",
+        });
+        return;
+      }
+      let goodTitleName =this.goodTitleName;
+      const res =await addGoodTitleName(goodTitleName)
+      if (res.code == 200) {
+        this.getGoodsTitle()
+        this.goodTitleName=""
       }
       if (res.code == 400) {
         this.$message({

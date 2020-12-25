@@ -27,6 +27,7 @@
 import jwtDecode from "jwt-decode";
 import vueNavBar from "./navBar";
 import { auditOrderCount } from "../../server/order";
+import { checkToken } from "../../server/login";
 export default {
   components: {
     vueNavBar,
@@ -47,9 +48,23 @@ export default {
         }
       }
     },
+    // 检查token是否有效
+    async checkToken() {
+      let token = sessionStorage.getItem("token");
+      const res = await checkToken(token);
+      if (res.code == 401) {
+        this.$message({
+          message: res.msg,
+          type: "error",
+        });
+        sessionStorage.removeItem("token");
+        this.$router.replace({ name: "login" });
+      }
+    },
   },
   mounted() {
     this.auditOrderCount();
+    this.checkToken();
   },
 };
 </script>

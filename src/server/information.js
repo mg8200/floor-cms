@@ -65,3 +65,13 @@ export async function addInformation(obj) {
     })
     return res
 }
+
+// 增加类别
+export async function addCategoryName(categoryName) {
+    const {
+        data: res
+    } = await axios.post(`/information/addCategoryName`, {
+        categoryName
+    })
+    return res
+}

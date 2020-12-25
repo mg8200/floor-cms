@@ -14,3 +14,13 @@ export async function login(username, password) {
     })
     return res
 }
+
+// 检查token是否有效
+export async function checkToken(token) {
+    const {
+        data: res
+    } = await axios.post(`/user/checkToken`, {
+        token
+    })
+    return res
+}

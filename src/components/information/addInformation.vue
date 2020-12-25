@@ -12,6 +12,14 @@
         <div slot="header" class="clearfix">
           <span>添加资讯</span>
         </div>
+        <div>
+          <el-input
+            v-model="categoryName"
+            placeholder="请输入要添加类别的名称"
+            style="width: 250px"
+          ></el-input>
+          <el-button @click="addCategoryName">添加</el-button>
+        </div>
         <div class="item">
           <el-form
             label-position="top"
@@ -94,11 +102,13 @@ import {
   getAllInformation,
   deleteArticle,
   addInformation,
+  addCategoryName,
 } from "../../server/information";
 import wangEditor from "wangeditor";
 export default {
   data() {
     return {
+      categoryName: "",
       NavList: [],
       informationData: {
         catid: "",
@@ -161,12 +171,34 @@ export default {
               type: "success",
             });
           }
-          if(res.code==400){
-             this.$message.error(res.msg);
+          if (res.code == 400) {
+            this.$message.error(res.msg);
           }
         } else {
           this.$message.error("请填写必选项");
         }
+      }
+    },
+    // 增加分类
+    async addCategoryName() {
+      if(this.categoryName.trim()==''){
+        this.$message({
+          message: "分类名称不能为空",
+          type: "error",
+        })
+        return;
+      }
+       let categoryName = this.categoryName;
+      const res = await addCategoryName(categoryName);
+      if(res.code==200){
+        this.getNav()
+        this.categoryName=""
+      }
+      if(res.code==400){
+        this.$message({
+          message: res.msg,
+          type: "error",
+        })
       }
     },
     submitUpload() {

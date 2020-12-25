@@ -39,8 +39,8 @@ export default {
   data() {
     return {
       formLabelAlign: {
-        username: "root",
-        password: "19980601mg",
+        username: "",
+        password: "",
       },
     };
   },
@@ -78,10 +78,7 @@ export default {
         }
       }
     },
-  },
-  created() {
-    console.log(serverIndex);
-  },
+  }
 };
 </script>
 
