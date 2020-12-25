@@ -92,7 +92,7 @@ export default {
   }
 
   .el-container {
-    height: 93.5vh;
+    height: 93vh;
   }
 
   body > .el-container {

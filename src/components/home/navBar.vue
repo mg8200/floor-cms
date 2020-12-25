@@ -71,11 +71,17 @@
           <span slot="title">订单管理</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="login">订单管理</el-menu-item>
-          <el-menu-item index="5-2">订单审核</el-menu-item>
+          <el-menu-item index="/orderManagement">
+            <i class="iconfont icon-dingdanguanli35"></i>
+            <span slot="title">订单管理</span>
+          </el-menu-item>
+          <el-menu-item index="/orderManagement/orderReview">
+            <i class="iconfont icon-dingdanshenhe"></i>
+            <span slot="title">订单审核</span>
+          </el-menu-item>
         </el-menu-item-group>
       </el-submenu>
-      <el-menu-item index="7">
+      <el-menu-item index="/report">
         <i class="iconfont icon-baobiao"></i>
         <span slot="title">数据报表</span>
       </el-menu-item>

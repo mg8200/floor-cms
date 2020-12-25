@@ -77,7 +77,6 @@ export async function getGoodsDetails(id) {
 }
 
 // 获取标题名称列表
-
 export async function getGoodsTitle() {
     const {
         data: res
